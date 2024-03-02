@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from 'react';
 import "./App.css";
+import Poke from './Poke';
 
 function App() {
   const [pokemon, setPokemon] = useState([]);
@@ -18,7 +19,7 @@ function App() {
     const pokemonE = await getPokemon(pokemonA);
     const pokemonF = await getPokemon(pokemonA);
     console.log(pokemonA, pokemonB, pokemonC, pokemonD, pokemonE, pokemonF)
-    setPokemon(pokemonA, pokemonB, pokemonC, pokemonD, pokemonE, pokemonF)
+    setPokemon([pokemonA, pokemonB, pokemonC, pokemonD, pokemonE, pokemonF])
     // Logic to display or manipulate the generated team
   };
 
@@ -38,8 +39,9 @@ function App() {
   const getPokemon = async (pokemonA) => {
     const randomNum2 = Math.floor(Math.random()*2)
     console.log('randomNum2', randomNum2)
+    console.log("THIS ONE", pokemonA.types.typeB.name)
     // console.log(Object.keys(pokemonA.types).length)
-    if (Object.keys(pokemonA.types).length == 1) {
+    if (pokemonA.types.typeB.name == false) {
       const typeA = pokemonA.types.typeA.url
       const response = await axios.get(typeA);
       const len = response.data.pokemon.length
@@ -54,7 +56,7 @@ function App() {
       console.log('poke teammate', pokemon)
       return pokemon
     } 
-    else if (Object.keys(pokemonA.types).length == 2) {
+    else {
       // console.log('pokemonA', pokemonA.types.typeA.url)
       // console.log('pokemonA', pokemonA.types.typeB.url)
       const typeA = pokemonA.types.typeA.url
@@ -104,6 +106,10 @@ function App() {
         'typeA': {
           'name': typeAName,
           'url': typeAUrl
+        },
+        'typeB': {
+          'name': false,
+          'url': false
         }
       };
       pokemon['types'] = pokeTypes;
@@ -131,54 +137,22 @@ function App() {
 
   return (
     <>
-      <h1>{title}</h1>
-      <form onSubmit={(e) => getTeam(e)}>
-        <button type="submit">Submit</button>
-      </form>
-      <div id="result">
-        {/* Display your Pokemon team here */}
-        <div>
-          <div></div>
-          <img src="" alt="" />
-          <ul>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <ul>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <ul>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <ul>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <ul>
-            <li></li>
-            <li></li>
-          </ul>
-        </div>
-        <div>
-          <img src="" alt="" />
-          <ul>
-            <li></li>
-            <li></li>
-          </ul>
+      <div id='mainContainer'>
+        <h1>{title}</h1>
+        <form onSubmit={(e) => getTeam(e)}>
+          <button type="submit">Get Team</button>
+        </form>
+        <div id="result">
+          {/* Display your Pokemon team here */}
+          {pokemon.map((poke, i) =>
+            <Poke
+              key={i}
+              name={poke.name}
+              typeA={poke.types.typeA.name}
+              typeB={poke.types.typeB.name}
+              sprite={poke.sprite}
+            />
+          )}
         </div>
       </div>
     </>
@@ -186,6 +160,3 @@ function App() {
 }
 
 export default App;
-
-
-

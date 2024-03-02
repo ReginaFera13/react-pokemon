@@ -1,0 +1,64 @@
+.pokeCard {
+    background-color: red;
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 400px;
+    width: 300px;
+    margin: 25px;
+}
+
+img {
+    height: 150px;
+    width: 150px;
+}
+
+ul {
+    border: 5px solid gold;
+    background-color: lightblue;
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0px;
+    height: 100px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+li {
+    text-align: center;
+    margin: 10px;
+}
+
+.name {
+    font-size: 1.5rem;
+    font-weight: bolder;
+}
+
+.types {
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.imgContainer {
+    border: 5px solid gold;
+    box-shadow: rgba(0, 0, 0, 0.75) 0px 5px 15px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    height: 200px;
+    width: 200px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+
+}
